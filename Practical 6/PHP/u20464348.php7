@@ -1,0 +1,38 @@
+<?php
+// Check if the input file is provided as a command-line parameter
+if ($argc < 2) {
+    die("Usage: php u20464348.php inputfile.txt\n");
+}
+
+$inputFile = $argv[1]; // Get the input file name from the command line
+
+// Check if the input file exists
+if (!file_exists($inputFile)) {
+    die("Input file not found.\n");
+}
+
+// Initialize variables to track the longest last name and the associated student number
+$longestLastName = "";
+$earliestAlphabeticalLastName = "zzzzzzzzzzzzzz"; // Set to a high value initially
+$studentNumber = "Nonefound";
+
+// Read and process the input file
+$lines = file($inputFile);
+foreach ($lines as $line) {
+    list($studentNum, $name) = explode(',', $line);
+    $lastName = explode(' ', $name); // Split the full name into words
+    $lastName = array_pop($lastName); // Get the last word as the last name
+
+    if (strlen($lastName) > strlen($longestLastName) ||
+        (strlen($lastName) === strlen($longestLastName) && $lastName < $earliestAlphabeticalLastName)) {
+        $longestLastName = $lastName;
+        $earliestAlphabeticalLastName = $lastName;
+        $studentNumber = $studentNum;
+    }
+}
+
+// Output HTML result
+echo "<html><body>";
+echo "Student with the longest last name: $studentNumber";
+echo "</body></html>";
+?>

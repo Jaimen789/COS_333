@@ -1,0 +1,6 @@
+Fortran
+gfortran -o u20464348 u20464348.f
+./u20464348
+
+Cobol
+cobc -x -o u20464348 u20464348.cob

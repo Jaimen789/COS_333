@@ -1,0 +1,5 @@
+PHP:
+php u20464348.php input.txt
+
+Perl:
+perl u20464348.pl input.txt
